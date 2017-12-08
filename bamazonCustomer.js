@@ -13,7 +13,11 @@ connection.connect(function(err){
 	if(err){
 		throw err;
 	}
-	//showItems();
+	showItems();
+});
+
+function showItems(){
+
 	var sql = "SELECT item_id, product_name, price FROM products";
 	connection.query(sql, function(err,result){
 		if(err){
@@ -30,7 +34,9 @@ connection.connect(function(err){
 		console.log(table.toString());
 	})
 	placeOrder();
-});
+
+}
+
 function placeOrder(){
 	inquirer
     .prompt([
@@ -60,7 +66,7 @@ function placeOrder(){
     		var container = data[0];
     		if(data.length == 0){
     			console.log("Please select a valid Item Id");
-    			//function
+    			showItems();
     		}
     		else{
     			if(userQuantity <= data[0].stock_quantity){
@@ -69,7 +75,8 @@ function placeOrder(){
     					"UPDATE products SET ? WHERE ? ",
     					[
     						{
-    							stock_quantity: data[0].stock_quantity - userQuantity
+    							stock_quantity: data[0].stock_quantity - userQuantity,
+    							product_sales: data[0].product_sales + data[0].price*userQuantity
     						},
     						{
     							item_id: userItem
