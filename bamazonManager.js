@@ -97,7 +97,7 @@ function addInventory(){
 			{
 				name: "itemId",
 				type: "input",
-				message: "What is the item Id you would like to ADD?",
+				message: "\n What is the item Id you would like to ADD?",
 				validate: function(value){
 		        	if(isNaN(value) === false){
 		        		return true;
@@ -108,7 +108,7 @@ function addInventory(){
 			{
 				name: "quantity",
 				type: "input",
-				message: "How many items do you like to add?",
+				message: "\n How many items do you like to add?",
 				validate: function(value){
 		        	if(isNaN(value) === false){
 		        		return true;
@@ -125,7 +125,7 @@ function addInventory(){
 
 				if(err) throw err;
 				if(results.length == 0){
-					console.log("please select the correct item");
+					console.log("\n please select the correct item");
 				}
 				else{
 					var container = results[0];
@@ -144,7 +144,7 @@ function addInventory(){
 
 							if(err) throw err;
 							else{
-								console.log("stock for item Id "+" "+item +"is updated to" +" " +(container.stock_quantity+parseInt(addQuantity)));
+								console.log("\n stock for item Id "+" "+item +"is updated to" +" " +(container.stock_quantity+parseInt(addQuantity)));
 								start();
 								//connection.end();
 							}

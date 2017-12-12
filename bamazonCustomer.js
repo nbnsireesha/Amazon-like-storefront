@@ -49,7 +49,7 @@ function placeOrder(){
 	    {
 	        name: "units",
 	        type: "input",
-	        message: "How many units of the product they would like to buy?",
+	        message: "\n How many units of the product they would like to buy?",
 	        validate: function(value){
 	        	if(isNaN(value) === false){
 	        		return true;
@@ -71,7 +71,7 @@ function placeOrder(){
     		}
     		else{
     			if(userQuantity <= data[0].stock_quantity){
-    				console.log("  Your Requested Item is in Stock  "+"\n");
+    				console.log("\n Your Requested Item is in Stock  "+"\n");
     				connection.query(
     					"UPDATE products SET ? WHERE ? ",
     					[
@@ -87,7 +87,24 @@ function placeOrder(){
 	    					if(err) throw err;
 	    					console.log("  YOUR ORDER IS PLACED  \n");
 	    					console.log("  YOUR TOTAL AMOUNT IS $" + container.price*userQuantity +"  \n");
-	    					connection.end();
+	    					inquirer
+    						.prompt([
+	    						{
+							        name: "confirm",
+							        type: "confirm",
+							        message: "Do you want to shop again?"
+								}
+	    					])
+	    					//connection.end();
+	    					.then(function(answer) {
+	    						if(answer.confirm === true){
+
+	    							showItems();
+	    						}
+	    						else{
+	    							connection.end();
+	    						}
+	    					});
     					}
     				);
     			}

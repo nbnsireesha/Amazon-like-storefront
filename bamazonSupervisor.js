@@ -36,13 +36,9 @@ function start(){
 	    });
 }
 function viewDeptDetails(){
-	var sql = "SELECT d.department_id, d.department_name, d.over_head_costs, ifnull(sum(product_sales),0) as product_sales, ifnull(sum(product_sales),0) - d.over_head_costs  as total_profit FROM products p INNER JOIN departments d ON p.department_name = d.department_name GROUP BY department_name";
+	var sql = "SELECT d.department_id, d.department_name, d.over_head_costs, ifnull(sum(product_sales),0) as product_sales, ifnull(sum(product_sales),0) - d.over_head_costs  as total_profit FROM products p RIGHT JOIN departments d ON p.department_name = d.department_name GROUP BY department_name ORDER BY d.department_id ";
 	connection.query(sql,function(err, result){
 		if(err) throw err;
-		for (var i = 0; i < result.length; i++) {
-			console.log(result[i].total_product_sales);
-		}
-		console.log(result[0].total_product_sales);
 		var table = new Table({
 			head: ['Department Id','Department Name', 'over_head_costs', 'total_product_sales', 'total_profit']
 		})
