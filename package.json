@@ -18,6 +18,7 @@
   "homepage": "https://github.com/nbnsireesha/Amazon-like-storefront#readme",
   "dependencies": {
     "cli-table": "^0.3.1",
+    "cli-table2": "^0.2.0",
     "inquirer": "^4.0.1",
     "mysql": "^2.15.0"
   }

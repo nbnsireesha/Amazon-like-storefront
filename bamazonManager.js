@@ -97,7 +97,7 @@ function addInventory(){
 			{
 				name: "itemId",
 				type: "input",
-				message: "What is the item you would like to ADD?",
+				message: "What is the item Id you would like to ADD?",
 				validate: function(value){
 		        	if(isNaN(value) === false){
 		        		return true;
@@ -129,11 +129,12 @@ function addInventory(){
 				}
 				else{
 					var container = results[0];
+					var updatedQty = container.stock_quantity + parseInt(addQuantity);
 					connection.query(
 						"UPDATE products SET ? WHERE ?",
 						[
 							{
-								stock_quantity: container.stock_quantity + addQuantity
+								stock_quantity: updatedQty
 							},
 							{
 								item_id: item
@@ -143,7 +144,7 @@ function addInventory(){
 
 							if(err) throw err;
 							else{
-								console.log("stock for item Id "+" "+item +"is updated to" +" " +(container.stock_quantity+addQuantity));
+								console.log("stock for item Id "+" "+item +"is updated to" +" " +(container.stock_quantity+parseInt(addQuantity)));
 								start();
 								//connection.end();
 							}

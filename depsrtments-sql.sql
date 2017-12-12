@@ -14,5 +14,10 @@ INSERT INTO departments (department_id, department_name, over_head_costs)
 VALUES (201, "furniture", 10000),(202,"kitchen",5000), (203, "outdoor",7000),(204, "electronics", 90000),(205, "games", 10000),(206, "food", 25000);
 
 SELECT d.department_id, d.department_name, d.over_head_costs, sum(product_sales) as product_sales, sum(product_sales) - d.over_head_costs  as total_profit
-FROM products p INNER JOIN departments d ON p.department_name = d.department_name 
+FROM products p INNER JOIN departments d ON p.department_name = d.department_name
+WHERE product_sales IS NOT NULL 
+GROUP BY department_name  ;
+
+SELECT d.department_id, d.department_name, d.over_head_costs, ifnull(sum(product_sales),0) as product_sales, ifnull(sum(product_sales),0) - d.over_head_costs  as total_profit
+FROM products p INNER JOIN departments d ON p.department_name = d.department_name
 GROUP BY department_name  ;

@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var inquirer = require("inquirer");
-var Table = require('cli-table');
+var Table = require('cli-table2');
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -36,7 +36,7 @@ function start(){
 	    });
 }
 function viewDeptDetails(){
-	var sql = "SELECT d.department_id, d.department_name, d.over_head_costs, sum(product_sales) as total_product_sales, sum(product_sales) - d.over_head_costs  as total_profit FROM products p INNER JOIN departments d ON p.department_name = d.department_name GROUP BY department_name";
+	var sql = "SELECT d.department_id, d.department_name, d.over_head_costs, ifnull(sum(product_sales),0) as product_sales, ifnull(sum(product_sales),0) - d.over_head_costs  as total_profit FROM products p INNER JOIN departments d ON p.department_name = d.department_name GROUP BY department_name";
 	connection.query(sql,function(err, result){
 		if(err) throw err;
 		for (var i = 0; i < result.length; i++) {
@@ -48,7 +48,7 @@ function viewDeptDetails(){
 		})
 		for (var i = 0; i < result.length; i++) {
 			table.push(
-				[result[i].department_id , result[i].department_name , result[i].over_head_costs, result[i].total_product_sales , result[i].total_profit]
+				[result[i].department_id , result[i].department_name , result[i].over_head_costs, result[i].product_sales , result[i].total_profit]
 			);
 		}
 		console.log(table.toString());

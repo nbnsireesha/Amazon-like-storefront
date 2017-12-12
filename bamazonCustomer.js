@@ -32,8 +32,9 @@ function showItems(){
 			);
 		}
 		console.log(table.toString());
+		placeOrder();
 	})
-	placeOrder();
+	
 
 }
 
@@ -65,12 +66,12 @@ function placeOrder(){
     		if(err) throw err;
     		var container = data[0];
     		if(data.length == 0){
-    			console.log("Please select a valid Item Id");
+    			console.log("--Please select a valid Item Id--");
     			showItems();
     		}
     		else{
     			if(userQuantity <= data[0].stock_quantity){
-    				console.log("your requested item is in stock");
+    				console.log("  Your Requested Item is in Stock  "+"\n");
     				connection.query(
     					"UPDATE products SET ? WHERE ? ",
     					[
@@ -84,14 +85,15 @@ function placeOrder(){
     					],
     					function(err,data){
 	    					if(err) throw err;
-	    					console.log(" YOUR ORDER IS PLACED");
-	    					console.log("YOUR TOTAL AMOUNT IS $" + container.price*userQuantity);
+	    					console.log("  YOUR ORDER IS PLACED  \n");
+	    					console.log("  YOUR TOTAL AMOUNT IS $" + container.price*userQuantity +"  \n");
 	    					connection.end();
     					}
     				);
     			}
     			else{
-    				console.log("sorry, we are out of stock");
+    				console.log("\n--Sorry, We are out of Stock--");
+    				showItems();
     			}
     		}
 
