@@ -57,7 +57,7 @@ function createNewDept(){
 	    {
 	        name: "deptId",
 	        type: "input",
-	        message: "What is the Id of the department that you would like to add?",
+	        message: "\n What is the Id of the department that you would like to add?",
 	        validate: function(value){
 	        	if(isNaN(value) === false){
 	        		return true;
@@ -68,12 +68,12 @@ function createNewDept(){
 	    {
 	        name: "deptName",
 	        type: "input",
-	        message: "What is the Name of the department that you would like to add?"   
+	        message: "\n What is the Name of the department that you would like to add?"   
 	    },
 	    {
 	        name: "initalCost",
 	        type: "input",
-	        message: "Please enter the over_head_costs of the department?",  
+	        message: "\n Please enter the over_head_costs of the department?",  
 	        validate: function(value){
 	        	if(isNaN(value) === false){
 	        		return true;
@@ -92,7 +92,7 @@ function createNewDept(){
 	    		},
     			function(err,results){
     				if(err) throw err;
-    				console.log("department was added to the data base");
+    				console.log("\n department was added to the data base\n ");
     				start();
     			}
     	);

@@ -72,7 +72,7 @@ function showAllProducts(){
 	})
 }
 function lowInventory(){
-	var sql = "SELECT item_id, product_name, stock_quantity FROM products WHERE stock_quantity < 30 ";
+	var sql = "SELECT item_id, product_name, stock_quantity FROM products WHERE stock_quantity < 5 ";
 	connection.query(sql,function(err,result){
 
 		if(err) throw err;
@@ -147,7 +147,6 @@ function addInventory(){
 							else{
 								console.log("\n stock for item Id "+" "+item +" is updated to" +" " +(container.stock_quantity+parseInt(addQuantity)));
 								start();
-								//connection.end();
 							}
 						}
 					);
@@ -163,22 +162,22 @@ function addNewProduct(){
 	      {
 		        name: "itemId",
 		        type: "input",
-		        message: "What is the item Id you would like to add?"
+		        message: "\n What is the item Id you would like to add?"
 	      },
 	      {
 		        name: "productName",
 		        type: "input",
-		        message: "What is the Product Name you would like to add?"
+		        message: "\n What is the Product Name you would like to add?"
 	      },
 	      {
 		        name: "department",
 		        type: "input",
-		        message: "What department would you like to add the product in?"
+		        message: "\n What department would you like to add the product in?"
 	      },
 	      {
 		        name: "price",
 		        type: "input",
-		        message: " What is the Price of the product?",
+		        message: " \n What is the Price of the product?",
 		        validate: function(value) {
 		          if (isNaN(value) === false) {
 		            return true;
@@ -189,7 +188,7 @@ function addNewProduct(){
 	      {
 	      		name: "quantity",
 		        type: "input",
-		        message: " What is the Stock Quantity of the product?",
+		        message: " \n What is the Stock Quantity of the product?",
 		        validate: function(value) {
 		          if (isNaN(value) === false) {
 		            return true;
@@ -200,20 +199,20 @@ function addNewProduct(){
 	      }
     	])
     	.then(function(answer){
-    		connection.query(
-    			"INSERT INTO products SET ?",
-	    		{
-	    			item_id: answer.itemId,
-	    			product_name: answer.productName,
-	    			department_name: answer.department,
-	    			price: answer.price,
-	    			stock_quantity: answer.quantity
-	    		},
-    			function(err,results){
-    				if(err) throw err;
-    				console.log("product was added to the data base");
-    				start();
-    			}
-    		);
+    				connection.query(
+		    			"INSERT INTO products SET ?",
+			    		{
+			    			item_id: answer.itemId,
+			    			product_name: answer.productName,
+			    			department_name: answer.department,
+			    			price: answer.price,
+			    			stock_quantity: answer.quantity
+			    		},
+		    			function(err,results){
+		    				if(err) throw err;
+		    				console.log("\n product was added to the data base");
+		    				start();
+		    			}
+    				);
     	});
 }

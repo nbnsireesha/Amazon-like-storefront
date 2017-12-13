@@ -66,7 +66,7 @@ function placeOrder(){
     		if(err) throw err;
     		var container = data[0];
     		if(data.length == 0){
-    			console.log("--Please select a valid Item Id--");
+    			console.log(" \n Please select a valid Item Id  ");
     			showItems();
     		}
     		else{
@@ -109,7 +109,7 @@ function placeOrder(){
     				);
     			}
     			else{
-    				console.log("\n--Sorry, We are out of Stock--");
+    				console.log("\nSorry, We are out of Stock");
     				showItems();
     			}
     		}
