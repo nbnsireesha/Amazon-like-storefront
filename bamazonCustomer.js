@@ -49,7 +49,7 @@ function placeOrder(){
 	    {
 	        name: "units",
 	        type: "input",
-	        message: "\n How many units of the product they would like to buy?",
+	        message: "\n How many units of the product you would like to buy?",
 	        validate: function(value){
 	        	if(isNaN(value) === false){
 	        		return true;

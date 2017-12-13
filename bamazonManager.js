@@ -126,6 +126,7 @@ function addInventory(){
 				if(err) throw err;
 				if(results.length == 0){
 					console.log("\n please select the correct item");
+					addInventory();
 				}
 				else{
 					var container = results[0];
@@ -144,7 +145,7 @@ function addInventory(){
 
 							if(err) throw err;
 							else{
-								console.log("\n stock for item Id "+" "+item +"is updated to" +" " +(container.stock_quantity+parseInt(addQuantity)));
+								console.log("\n stock for item Id "+" "+item +" is updated to" +" " +(container.stock_quantity+parseInt(addQuantity)));
 								start();
 								//connection.end();
 							}
