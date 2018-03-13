@@ -1,6 +1,7 @@
 # Amazon-like-storefront
-<<<<<<< HEAD
-=======
+
+Here is the demo version of this project
+  https://drive.google.com/file/d/1EGCpZniCL9UeqhbMqDOYNHBeG6d6S9rS/view?usp=sharing
 
 Challenge #1: Customer View
 1.The app should then prompt users with two messages.
@@ -49,4 +50,3 @@ Create another Node app called bamazonSupervisor.js. Running this application wi
   with columns department_id, department_name, over_head_costs, product_sales , total_profit
 2.Where total_profit column should be calculated on the fly using the difference between over_head_costs and product_sales. total_profit   should not be stored in any database.
 
->>>>>>> b697095bae631d84533ee890fafb9938a7227d16
